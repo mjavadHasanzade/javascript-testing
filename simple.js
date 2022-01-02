@@ -1,16 +1,33 @@
 const { subtract, sum } = require('./math.js');
 
-let result = sum(7, 3);
-let expected = 10;
+function sumTest() {
+    let result = sum(7, 3);
+    let expected = 10;
+    expect(result).toBe(expected);
+}
 
-expect(result).toBe(expected);
+test("add two numbers", sumTest)
 
 //==================================//
-result = subtract(7, 3);
-expected = 4;
 
-expect(result).toGreaterThan(expected);
+function subTest() {
+    result = subtract(7, 3);
+    expected = 41;
 
+    expect(result).toBe(expected);
+}
+
+test("sub two numbers", subTest)
+
+function test(title, callback) {
+    try {
+        callback();
+        console.log(`✔️  ${title}`);
+    } catch (error) {
+        console.error(`❌  ${title}`);
+        console.error(error);
+    }
+}
 
 function expect(actual) {
     return {
@@ -20,7 +37,7 @@ function expect(actual) {
             }
         },
 
-        toGreaterThan(expected){
+        toGreaterThan(expected) {
             if (actual < expected) {
                 throw new Error(`the result is ${actual} and is not greater than expected ${expected}`)
             }
@@ -28,4 +45,3 @@ function expect(actual) {
     }
 }
 
-console.log("test passed")
