@@ -1,17 +1,31 @@
 const { subtract, sum } = require('./math.js');
 
 let result = sum(7, 3);
-let expect = 10;
+let expected = 10;
 
-if (result !== expect) {
-    throw new Error(`the result is ${result} and is not equal to expect ${expect}`)
-}
+expect(result).toBe(expected);
 
+//==================================//
 result = subtract(7, 3);
-expect = 4;
+expected = 4;
 
-if (result !== expect) {
-    throw new Error(`the result is ${result} and is not equal to expect ${expect}`)
+expect(result).toGreaterThan(expected);
+
+
+function expect(actual) {
+    return {
+        toBe(expected) {
+            if (actual !== expected) {
+                throw new Error(`the result is ${actual} and is not equal to expect ${expected}`)
+            }
+        },
+
+        toGreaterThan(expected){
+            if (actual < expected) {
+                throw new Error(`the result is ${actual} and is not greater than expected ${expected}`)
+            }
+        }
+    }
 }
 
 console.log("test passed")
