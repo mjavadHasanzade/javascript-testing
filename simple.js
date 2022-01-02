@@ -1,4 +1,4 @@
-const { subtract, sum } = require('./math.js');
+const { subtract, sum, sumAsync } = require('./math.js');
 
 function sumTest() {
     let result = sum(7, 3);
@@ -12,12 +12,12 @@ test("add two numbers", sumTest)
 
 function subTest() {
     result = subtract(7, 3);
-    expected = 41;
+    expected = 4;
 
     expect(result).toBe(expected);
 }
 
-test("sub two numbers", subTest)
+test("sub two numbers async", sumAsync)
 
 function test(title, callback) {
     try {
